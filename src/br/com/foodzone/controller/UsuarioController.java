@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.foodzone.application.UsuarioApplication;
 import br.com.foodzone.exception.UsuarioInvalidoException;
+import br.com.foodzone.intercepts.Liberado;
 import br.com.foodzone.model.Usuario;
 import br.com.foodzone.model.UsuarioWeb;
 
@@ -126,6 +127,7 @@ public class UsuarioController {
 	}// fim logout()
 	
 	// Acesso
+	@Liberado
 	@Get
 	// método get
 	@Path("/usuario/novo")
@@ -141,7 +143,7 @@ public class UsuarioController {
 
 	}// fim novo()
 
-
+	@Liberado
 	@Post
 	// método post
 	@Path("/usuario/adicionar")
