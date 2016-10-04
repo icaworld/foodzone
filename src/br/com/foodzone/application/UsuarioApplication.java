@@ -9,60 +9,60 @@ import br.com.foodzone.service.UsuarioService;
 @Component
 public class UsuarioApplication {
 
-	private UsuarioDao usuarioDao;
-	private UsuarioService usuarioService;
+    private UsuarioDao usuarioDao;
+    private UsuarioService usuarioService;
 
-	public UsuarioApplication() {
-		usuarioDao = new UsuarioDao(null);
-		usuarioService = new UsuarioService(usuarioDao);
-	}
+    public UsuarioApplication() {
+	usuarioDao = new UsuarioDao(null);
+	usuarioService = new UsuarioService(usuarioDao);
+    }
 
-	public Usuario autenticaoLogin(Usuario usuario) throws UsuarioInvalidoException {
+    public Usuario autenticaoLogin(Usuario usuario) throws UsuarioInvalidoException {
 
-		// validação
-		usuarioService.validacaoLogin(usuario);
+	// validação
+	usuarioService.validacaoLogin(usuario);
 
-		// se válido retorna
-		return usuarioDao.carregaUsuarioBySenha(	usuario);
-	}
+	// se válido retorna
+	usuario = usuarioDao.carregaUsuarioBySenha(usuario);
+	return usuario;
+    }
 
-	public Usuario restSenha(Usuario usuario) throws UsuarioInvalidoException {
-		// se válido retorna
-		return usuarioDao.carregaUsuarioNewSenha(usuario);
-	}
+    public Usuario restSenha(Usuario usuario) throws UsuarioInvalidoException {
+	// se válido retorna
+	return usuarioDao.carregaUsuarioNewSenha(usuario);
+    }
 
-	public Usuario carregaUsuario(Integer idUsuario) {
+    public Usuario carregaUsuario(Integer idUsuario) {
 
-		return usuarioDao.carregar(idUsuario);
-	}
+	return usuarioDao.carregar(idUsuario);
+    }
 
-	public void excluirUsuario(Usuario idUsuario) {
-		usuarioDao.deletar(idUsuario);
-	}
+    public void excluirUsuario(Usuario idUsuario) {
+	usuarioDao.deletar(idUsuario);
+    }
 
-	public void atualizaUsuario(Usuario usuario) {
-		usuarioDao.atualizar(usuario);
+    public void atualizaUsuario(Usuario usuario) {
+	usuarioDao.atualizar(usuario);
 
-	}
+    }
 
-	public boolean validaUsuarioAdicionar(Usuario usuario) {
-		return usuarioDao.validaUsuarioAdicionar(usuario);
-	}
+    public boolean validaUsuarioAdicionar(Usuario usuario) {
+	return usuarioDao.validaUsuarioAdicionar(usuario);
+    }
 
-	public boolean validaUsuarioEditar(Usuario usuario) {
+    public boolean validaUsuarioEditar(Usuario usuario) {
 
-		return validaUsuarioEditar(usuario);
-	}
+	return validaUsuarioEditar(usuario);
+    }
 
-	public void salvaUsuario(Usuario usuario) {
+    public void salvaUsuario(Usuario usuario) {
 
-		usuarioDao.adicionar(usuario);
-	}
+	usuarioDao.adicionar(usuario);
+    }
 
+    public String numeroTotalUsuarios() {
 
-	public String numeroTotalUsuarios(){
-		
-		return usuarioDao.numeroUsuarios();
-	}
-	
+	return usuarioDao.numeroUsuarios();
+    }
+
 }

@@ -13,20 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-@NamedQueries({
-		@NamedQuery(name = "Usuario.numeroUsuarios", query = "SELECT COUNT(u.id) FROM Usuario u "),
-		@NamedQuery(name = "Usuario.findAllNotInUsuId", query = "SELECT u FROM Usuario u WHERE u.id  NOT IN (:id)"),
-		@NamedQuery(name = "Usuario.findUsuNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome "),
-		@NamedQuery(name = "Usuario.findUsuNomeSenha", query = "SELECT u FROM Usuario u WHERE u.nome = :nome AND u.senha = :senha"),
-		@NamedQuery(name = "Usuario.findUsuEmailPergunta", query = "SELECT u FROM Usuario u WHERE u.email = :email AND u.pergunta = :pergunta AND u.tipoPergunta = :tipo_pergunta"),
-		@NamedQuery(name = "Usuario.findMaxUsuId", query = "SELECT MAX(u.id) FROM Usuario u")
-})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

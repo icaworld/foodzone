@@ -35,7 +35,7 @@ public abstract class Dao<T> {
 	protected Session session;
 
 	public Dao(Session session) {
-		this.session = (Session) FabricaDeConexao.getInstanciaConexaoMysql().getDelegate();
+		this.session = (Session) FabricaDeConexao.getSession();
 	}
 
 	// método adiciona

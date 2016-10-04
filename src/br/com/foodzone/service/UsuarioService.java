@@ -26,9 +26,8 @@ public class UsuarioService {
 
 	public void validacaoLogin(Usuario usuario) throws UsuarioInvalidoException {
 
-//		if (usuarioDao.carregaUsuario(usuario) == null) {
-//
-//			throw new UsuarioInvalidoException("Login e/ou senha inválidos");
-//		}
+		if (usuarioDao.carregaUsuarioBySenha(usuario) == null) {
+			throw new UsuarioInvalidoException("Login e/ou senha inválidos");
+		}
 	}
 }
