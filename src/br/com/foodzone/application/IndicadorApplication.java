@@ -44,5 +44,11 @@ public class IndicadorApplication {
 		
 		return indicadorDao.numeroCadastro();
 	}
+
+
+	public boolean validaIndicadorAdicionar(Indicador indicador) {
+		return indicadorDao.validaIndicadorAdicionar(indicador);
+		
+	}
 	
 }

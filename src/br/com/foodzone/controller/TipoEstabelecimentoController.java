@@ -1,5 +1,7 @@
 package br.com.foodzone.controller;
 
+import java.util.ArrayList;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -11,7 +13,6 @@ import br.com.foodzone.application.TipoEstabelecimentoApplication;
 import br.com.foodzone.model.TipoEstabelecimento;
 import br.com.foodzone.model.UsuarioWeb;
 
-
 /*Classe controladora TipoEstabelecimentoController contém 
  as regras de negócio, com anotação @Resource para o
  Vraptor saber que essa classe é um controller*/
@@ -22,7 +23,8 @@ public class TipoEstabelecimentoController {
 	private UsuarioWeb usuarioWeb;// mantem o estado do usuário
 	private Result result; // mostra resultados
 	private Validator validator; // validação
-	private TipoEstabelecimentoApplication tipoEstabelecimentoApplication; // usuário app
+	private TipoEstabelecimentoApplication tipoEstabelecimentoApplication; // usuário
+																			// app
 
 	// ...
 	public TipoEstabelecimentoController(Validator validator, UsuarioWeb usuarioWeb,
@@ -47,10 +49,9 @@ public class TipoEstabelecimentoController {
 
 		// define atributo para a jsp
 		// retorna uma lista de estados
-//		result.include("estados", estadoApplication.listaTodosEstados());
+		// result.include("estados", estadoApplication.listaTodosEstados());
 
 	}// fim novo()
-
 
 	@Post
 	// método post
@@ -61,25 +62,25 @@ public class TipoEstabelecimentoController {
 		// define título da página
 		result.include("titulo", "Adicionar Usuário");
 
-		try {
-//			if(tipoEstabelecimentoApplication.validaTipoEstabelecimentoAdicionar(tipoEstabelecimento)){
-			// processo salvar cliente
-			tipoEstabelecimentoApplication.salvaTipoEstabelecimento(tipoEstabelecimento);
-			
-			
-		} catch (Exception e) {
-			// redireciona para a página novo() caso houver erro na validação
-			validator.onErrorUsePageOf(this).novo();
-		}
-		
+			if (!tipoEstabelecimentoApplication.validaTipoEstabelecimentoAdicionar(tipoEstabelecimento)) {
+				// processo salvar cliente
+				tipoEstabelecimentoApplication.salvaTipoEstabelecimento(tipoEstabelecimento);
+				result.include("sucesso_adicionado",
+						"TipoEstabelecimento " + tipoEstabelecimento.getNome() + " adicionado com sucesso!");
+
+				// redirecionando para a página novo()
+				result.redirectTo(this).novo();
+
+			} else {
+				ArrayList<String> errors = new ArrayList<String>();
+				errors.add("Tipo de estabelecimento já cadastrado!");
+				result.include("errors", errors);
+				result.redirectTo(this).novo();
+			}
+
+
 		// define atributo para a jsp
 		// adicionado com sucesso
-		result.include("sucesso_adicionado", "TipoEstabelecimento " + tipoEstabelecimento.getNome()
-				+ " adicionado com sucesso!");
-
-		// redirecionando para a página novo()
-		result.redirectTo(this).novo();
 	}// fim adicionar()
-
 
 }// fim class TipoEstabelecimentoController

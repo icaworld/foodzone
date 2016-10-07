@@ -1,5 +1,6 @@
 package br.com.foodzone.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.caelum.vraptor.Get;
@@ -62,26 +63,25 @@ public class IndicadorController {
 		// define título da página
 		result.include("titulo", "Adicionar Usuário");
 
-		try {
 			Date data = new Date(System.currentTimeMillis());
 			indicador.setDataInclusao(data);
-//			if(indicadorApplication.validaIndicadorAdicionar(indicador)){
+			if(!indicadorApplication.validaIndicadorAdicionar(indicador)){
 			// processo salvar cliente
 			indicadorApplication.salvaIndicador(indicador);
-			
-			
-		} catch (Exception e) {
-			// redireciona para a página novo() caso houver erro na validação
-			validator.onErrorUsePageOf(this).novo();
-		}
-		
-		// define atributo para a jsp
-		// adicionado com sucesso
-		result.include("sucesso_adicionado", "Indicador " + indicador.getNome()
-				+ " adicionado com sucesso!");
+			// define atributo para a jsp
+			// adicionado com sucesso
+			result.include("sucesso_adicionado", "Indicador " + indicador.getNome()
+					+ " adicionado com sucesso!");
 
-		// redirecionando para a página novo()
-		result.redirectTo(this).novo();
+			// redirecionando para a página novo()
+			
+			} else {
+				ArrayList<String> errors = new ArrayList<String>();
+				errors.add("Indicador já cadastrado!");
+				result.include("errors", errors);
+			}
+			result.redirectTo(this).novo();			
+		
 	}// fim adicionar()
 
 

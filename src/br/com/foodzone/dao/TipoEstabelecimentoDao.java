@@ -31,4 +31,22 @@ public class TipoEstabelecimentoDao extends Dao<TipoEstabelecimento>{
 		return ""+criteria.list().size();
 	}// fim numeroUsuarios()
 
+
+
+	public boolean validaTipoEstabelecimentoAdicionar(TipoEstabelecimento tipoEstabelecimento) {
+
+		Criteria criteria = this.session.createCriteria(TipoEstabelecimento.class);
+		criteria.add(Restrictions.eq("nome", tipoEstabelecimento.getNome()));
+		criteria.list();
+		if (!criteria.list().isEmpty()) {
+			return true;// tipoEstabelecimento já registrado
+		} // fim if
+
+		// fecha conexão
+		// gerenciadorEntidades.close();
+
+		return false;// tipoEstabelecimento não registrado
+
+	}
+
 }// fim class UsuarioDao

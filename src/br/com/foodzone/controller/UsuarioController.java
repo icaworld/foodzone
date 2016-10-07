@@ -1,5 +1,8 @@
 package br.com.foodzone.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -151,24 +154,22 @@ public class UsuarioController {
 		// define título da página
 		result.include("titulo", "Adicionar Usuário");
 
-		try {
 			if (!usuarioApplication.validaUsuarioAdicionar(usuario)) {
 				// processo salvar cliente
 				usuarioApplication.salvaUsuario(usuario);
 				result.include("sucesso_adicionado", "Usuario " + usuario.getNome() + " adicionado com sucesso!");
 			}else{
-				
+				ArrayList<String> errors = new ArrayList<String>();
+				errors.add("Usuário já cadastrado!");
+				result.include("errors", errors);
 			}
-		} catch (Exception e) {
-			// redireciona para a página novo() caso houver erro na validação
-			validator.onErrorUsePageOf(this).novo();
-		}
+			result.redirectTo(this).novo();
 
 		// define atributo para a jsp
 		// adicionado com sucesso
 
 		// redirecionando para a página novo()
-		result.redirectTo(this).novo();
+//		result.redirectTo(this).novo();
 	}// fim adicionar()
 
 }// fim class UsuarioController

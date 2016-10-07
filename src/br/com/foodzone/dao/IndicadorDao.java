@@ -3,6 +3,7 @@ package br.com.foodzone.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.foodzone.model.Indicador;
@@ -27,5 +28,22 @@ public class IndicadorDao extends Dao<Indicador>{
 		Criteria criteria = this.session.createCriteria(Indicador.class);
 		return ""+criteria.list().size();
 	}// fim numeroUsuarios()
+
+
+
+	public boolean validaIndicadorAdicionar(Indicador indicador) {
+		Criteria criteria = this.session.createCriteria(TipoEstabelecimento.class);
+		criteria.add(Restrictions.eq("nome", indicador.getNome()));
+		criteria.list();
+		if (!criteria.list().isEmpty()) {
+			return true;// Indicador já registrado
+		} // fim if
+
+		// fecha conexão
+		// gerenciadorEntidades.close();
+
+		return false;// Indicador não registrado
+
+	}
 
 }// fim class UsuarioDao

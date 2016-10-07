@@ -3,6 +3,7 @@ package br.com.foodzone.application;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.foodzone.dao.TipoEstabelecimentoDao;
 import br.com.foodzone.model.TipoEstabelecimento;
+import br.com.foodzone.model.Usuario;
 
 @Component
 public class TipoEstabelecimentoApplication {
@@ -45,4 +46,8 @@ public class TipoEstabelecimentoApplication {
 		return tipoEstabelecimentoDao.numeroCadastro();
 	}
 	
+	public boolean validaTipoEstabelecimentoAdicionar(TipoEstabelecimento tipoEstabelecimento) {
+		return tipoEstabelecimentoDao.validaTipoEstabelecimentoAdicionar(tipoEstabelecimento);
+	    }
+
 }

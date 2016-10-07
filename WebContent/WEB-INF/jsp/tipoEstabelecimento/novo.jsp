@@ -34,7 +34,7 @@
 			<h4 class="alert-heading">Error!</h4>
 			<ul>
 				<c:forEach items="${errors}" var="error">
-					<li>${error.message}</li>
+					<li>${error}</li>
 				</c:forEach>
 			</ul>
 		</div>
