@@ -1,5 +1,7 @@
 package br.com.foodzone.controller;
 
+import java.util.Date;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -63,6 +65,9 @@ public class EstabelecimentoController {
 		try {
 //			if(estabelecimentoApplication.validaEstabelecimentoAdicionar(estabelecimento)){
 			// processo salvar cliente
+			Date data = new Date(System.currentTimeMillis());
+			estabelecimento.setDataInclusao(data);
+
 			estabelecimentoApplication.salvaEstabelecimento(estabelecimento);
 			
 			

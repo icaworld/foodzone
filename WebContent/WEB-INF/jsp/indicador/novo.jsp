@@ -78,7 +78,7 @@
 							<div class="control-group">
 								<label class="control-label">Data Inatividade:</label>
 								<div class="controls">
-									<input type="date" name="indicador.dataInatividade"/>
+									<input type="date" name="indicador.dataInatividade"  />
 								</div>
 							</div>
 						</div>

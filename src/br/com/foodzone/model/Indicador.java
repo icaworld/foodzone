@@ -22,7 +22,6 @@ public class Indicador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    @NotNull(message="é obrigatório!")
     private Integer id;
     @Column(name = "nome")
     private String nome;
@@ -31,7 +30,7 @@ public class Indicador implements Serializable {
     @Column(name = "data_inatividade")
     private Date dataInatividade;
     @Column(name = "ativo")
-    private Integer flagAtivo;
+    private Integer flagAtivo = 1;
     
     public Integer getId() {
         return id;

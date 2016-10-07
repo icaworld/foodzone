@@ -1,12 +1,13 @@
 package br.com.foodzone.controller;
 
+import java.util.Date;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.foodzone.application.IndicadorApplication;
 import br.com.foodzone.model.Indicador;
 import br.com.foodzone.model.UsuarioWeb;
@@ -58,11 +59,12 @@ public class IndicadorController {
 	// url de caminho
 	public void adicionar(Indicador indicador) {
 
-		System.out.println("-----------------------"+ indicador.getDataInatividade());
 		// define título da página
 		result.include("titulo", "Adicionar Usuário");
 
 		try {
+			Date data = new Date(System.currentTimeMillis());
+			indicador.setDataInclusao(data);
 //			if(indicadorApplication.validaIndicadorAdicionar(indicador)){
 			// processo salvar cliente
 			indicadorApplication.salvaIndicador(indicador);

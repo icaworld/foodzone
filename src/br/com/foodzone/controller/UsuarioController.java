@@ -26,8 +26,8 @@ public class UsuarioController {
 	private UsuarioApplication usuarioApplication; // usuário app
 
 	// ...
-	public UsuarioController(Validator validator, UsuarioWeb usuarioWeb,
-			UsuarioApplication usuarioApplication, Result result) {
+	public UsuarioController(Validator validator, UsuarioWeb usuarioWeb, UsuarioApplication usuarioApplication,
+			Result result) {
 
 		this.result = result;
 		this.validator = validator;
@@ -44,7 +44,6 @@ public class UsuarioController {
 		result.include("titulo", "Login - Sistema FoodZone");
 
 	}// fim login()
-
 
 	// página de reset
 	@Get("/reset")
@@ -75,7 +74,7 @@ public class UsuarioController {
 			// redireciona para a página loginForm() caso houver erro na
 			// validação
 			validator.onErrorUsePageOf(UsuarioController.class).loginForm();
-			
+
 			// permite fazer login sem erros em sessão
 			usuarioWeb.fazerLogin(usuarioValido);
 
@@ -93,25 +92,25 @@ public class UsuarioController {
 		try {
 			// condição que permite fazer login
 			usuarioValido = usuarioApplication.restSenha(usuario);
-			
+
 		} catch (UsuarioInvalidoException e) {
-			
+
 			validator.add(new ValidationMessage(e.getMessage(), null));
-			
+
 		} finally {
-			
+
 			// redireciona para a página loginForm() caso houver erro na
 			// validação
 			validator.onErrorUsePageOf(UsuarioController.class).resetForm();
-			
+
 			// permite fazer login sem erros em sessão
 			usuarioWeb.fazerLogin(usuarioValido);
-			
+
 		}
-		
+
 		// redirecionando para a index
 		result.redirectTo(IndexController.class).index();
-		
+
 	}// fim login()
 
 	// ação de sair do sistema
@@ -125,7 +124,7 @@ public class UsuarioController {
 		result.redirectTo(UsuarioController.class).loginForm();
 
 	}// fim logout()
-	
+
 	// Acesso
 	@Liberado
 	@Get
@@ -139,7 +138,7 @@ public class UsuarioController {
 
 		// define atributo para a jsp
 		// retorna uma lista de estados
-//		result.include("estados", estadoApplication.listaTodosEstados());
+		// result.include("estados", estadoApplication.listaTodosEstados());
 
 	}// fim novo()
 
@@ -149,29 +148,27 @@ public class UsuarioController {
 	@Path("/usuario/adicionar")
 	// url de caminho
 	public void adicionar(Usuario usuario) {
-
 		// define título da página
 		result.include("titulo", "Adicionar Usuário");
 
 		try {
-			if(usuarioApplication.validaUsuarioAdicionar(usuario)){
-			// processo salvar cliente
-			usuarioApplication.salvaUsuario(usuario);
-			
+			if (!usuarioApplication.validaUsuarioAdicionar(usuario)) {
+				// processo salvar cliente
+				usuarioApplication.salvaUsuario(usuario);
+				result.include("sucesso_adicionado", "Usuario " + usuario.getNome() + " adicionado com sucesso!");
+			}else{
+				
 			}
 		} catch (Exception e) {
 			// redireciona para a página novo() caso houver erro na validação
 			validator.onErrorUsePageOf(this).novo();
 		}
-		
+
 		// define atributo para a jsp
 		// adicionado com sucesso
-		result.include("sucesso_adicionado", "Usuario " + usuario.getNome()
-				+ " adicionado com sucesso!");
 
 		// redirecionando para a página novo()
 		result.redirectTo(this).novo();
 	}// fim adicionar()
-
 
 }// fim class UsuarioController

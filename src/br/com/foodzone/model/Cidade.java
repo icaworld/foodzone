@@ -26,7 +26,6 @@ public class Cidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    @NotNull(message="Cidade é obrigatório!")
     private Integer id;
     @Column(name = "nome")
     private String nome;

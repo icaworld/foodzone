@@ -1,8 +1,11 @@
 package br.com.foodzone.application;
 
+import java.security.NoSuchAlgorithmException;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.foodzone.dao.UsuarioDao;
 import br.com.foodzone.exception.UsuarioInvalidoException;
+import br.com.foodzone.model.HashUtil;
 import br.com.foodzone.model.Usuario;
 import br.com.foodzone.service.UsuarioService;
 
@@ -18,7 +21,11 @@ public class UsuarioApplication {
     }
 
     public Usuario autenticaoLogin(Usuario usuario) throws UsuarioInvalidoException {
-
+    	try {
+			usuario.setSenha(HashUtil.toMD5(usuario.getSenha()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	// validação
 	usuarioService.validacaoLogin(usuario);
 
@@ -56,7 +63,11 @@ public class UsuarioApplication {
     }
 
     public void salvaUsuario(Usuario usuario) {
-
+    	try {
+			usuario.setSenha(HashUtil.toMD5(usuario.getSenha()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	usuarioDao.adicionar(usuario);
     }
 

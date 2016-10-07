@@ -21,7 +21,6 @@ public class TipoEstabelecimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    @NotNull(message="é obrigatório!")
     private Integer id;
     
     @Column(name = "nome")

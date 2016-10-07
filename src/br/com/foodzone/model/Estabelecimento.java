@@ -1,18 +1,18 @@
 package br.com.foodzone.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "estabelecimento")
@@ -22,7 +22,6 @@ public class Estabelecimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    @NotNull(message = "é obrigatório!")
     private Integer id;
     @Column(name = "nome")
     private String nome;
@@ -35,9 +34,9 @@ public class Estabelecimento implements Serializable {
     @Column(name = "data_inclusao")
     private Date dataInclusao;
     @Column(name = "ativo")
-    private Integer flagAtivo;
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
-    @OneToOne(optional = false)
+    private Integer flagAtivo =1;
+    @OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "endereco_id")
     private Endereco enderecoId;
 
     public Integer getId() {

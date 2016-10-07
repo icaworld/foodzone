@@ -1,6 +1,7 @@
 package br.com.foodzone.application;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.foodzone.dao.EnderecoDao;
 import br.com.foodzone.dao.EstabelecimentoDao;
 import br.com.foodzone.model.Estabelecimento;
 
@@ -8,9 +9,12 @@ import br.com.foodzone.model.Estabelecimento;
 public class EstabelecimentoApplication {
 
 	private EstabelecimentoDao estabelecimentoDao;
+	private EnderecoDao enderecoDao;
 
+	
 	public EstabelecimentoApplication() {
 		estabelecimentoDao = new EstabelecimentoDao(null);
+		enderecoDao = new EnderecoDao(null);
 	}
 
 
@@ -35,7 +39,6 @@ public class EstabelecimentoApplication {
 	}
 
 	public void salvaEstabelecimento(Estabelecimento estabelecimento) {
-
 		estabelecimentoDao.adicionar(estabelecimento);
 	}
 
