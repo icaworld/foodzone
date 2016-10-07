@@ -19,63 +19,64 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "end_id")
-    private Integer endId;
-    @Column(name = "end_rua")
-    private String endRua;
-    @Column(name = "end_numero")
-    private String endNumero;
-    @Column(name = "end_bairro")
-    private String endBairro;
-//    @JoinColumn(name = "cidade_id", referencedColumnName = "cidade_id")
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "rua")
+    private String rua;
+    @Column(name = "numero")
+    private String numero;
+    @Column(name = "bairro")
+    private String bairro;
+    @JoinColumn(name = "cidade_id", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Cidade cidadeId;
 
     public Endereco() {
     }
 
-    public Integer getEndId() {
-        return endId;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setEndId(Integer endId) {
-        this.endId = endId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getEndRua() {
-        return endRua;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public void setEndRua(String endRua) {
-        this.endRua = endRua;
-    }
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
-    public String getEndNumero() {
-        return endNumero;
-    }
+	public String getNumero() {
+		return numero;
+	}
 
-    public void setEndNumero(String endNumero) {
-        this.endNumero = endNumero;
-    }
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
-    public String getEndBairro() {
-        return endBairro;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public void setEndBairro(String endBairro) {
-        this.endBairro = endBairro;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public Cidade getCidadeId() {
-        return cidadeId;
-    }
+	public Cidade getCidadeId() {
+		return cidadeId;
+	}
 
-    public void setCidadeId(Cidade cidadeId) {
-        this.cidadeId = cidadeId;
-    }
+	public void setCidadeId(Cidade cidadeId) {
+		this.cidadeId = cidadeId;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-    
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 }

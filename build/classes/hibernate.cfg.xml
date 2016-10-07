@@ -16,7 +16,10 @@
 		<mapping class="br.com.foodzone.model.Usuario" />
 		<mapping class="br.com.foodzone.model.Estabelecimento" />
 		<mapping class="br.com.foodzone.model.Indicador" />
-
+		<mapping class="br.com.foodzone.model.Endereco" />
+		<mapping class="br.com.foodzone.model.Cidade" />
+		<mapping class="br.com.foodzone.model.Estado" />
+		<mapping class="br.com.foodzone.model.TipoEstabelecimento" />
 	</session-factory>
 </hibernate-configuration>
 

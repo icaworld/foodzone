@@ -30,7 +30,7 @@ public class Cidade implements Serializable {
     private Integer id;
     @Column(name = "nome")
     private String nome;
-//    @JoinColumn(name = "estado_id", referencedColumnName = "estado_id")
+    @JoinColumn(name = "estado_id", referencedColumnName = "id")
     @OneToOne(optional = true)
     private Estado estadoId;
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "cidadeId")

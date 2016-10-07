@@ -36,7 +36,7 @@ public class Estabelecimento implements Serializable {
     private Date dataInclusao;
     @Column(name = "ativo")
     private Integer flagAtivo;
-//    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Endereco enderecoId;
 
