@@ -1,6 +1,7 @@
 package br.com.foodzone.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -8,7 +9,6 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.foodzone.application.TipoEstabelecimentoApplication;
 import br.com.foodzone.model.TipoEstabelecimento;
 import br.com.foodzone.model.UsuarioWeb;
@@ -82,5 +82,33 @@ public class TipoEstabelecimentoController {
 		// define atributo para a jsp
 		// adicionado com sucesso
 	}// fim adicionar()
+	
+	
+	@Get
+	@Path("TipoEstabelecimento/listar")
+	public List<TipoEstabelecimento> listar(Integer pagina) {
+
+		// define título da página
+		result.include("titulo", "Listar produtos");
+
+		// define atributo para a jsp
+		// Número total de produtos
+		result.include("totalProdutos",
+				tipoEstabelecimentoApplication.numeroTotalTipoEstabelecimentos());
+
+		// define atributo para a jsp
+		// Número de paginações
+//		result.include("numeroDePaginacao",
+//				tipoEstabelecimentoApplication.numeroDePaginacao("NORMAL", null));
+
+		// define atributo para a jsp
+		// Página atual
+		result.include("paginaAtual", pagina == null ? pagina = 1 : pagina);
+		return null;
+
+		// retorna uma lista de produtos
+//		return tipoEstabelecimentoApplicatison.listarProdutos(pagina, "NORMAL", null);
+
+	}// fim listar()
 
 }// fim class TipoEstabelecimentoController
